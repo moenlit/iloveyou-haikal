@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nunito:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(to bottom right, #f8bbd0, #e1bee7, #f3e5f5);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .login-container {
+      background-color: #fcd6e2;
+      border-radius: 20px;
+      padding: 25px 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      text-align: center;
+      width: 90%;
+      max-width: 350px;
+      animation: fadeIn 1s ease-in-out;
+      z-index: 2;
+      position: relative;
+    }
+
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 30px;
+      margin-bottom: 10px;
+      color: #b83b5e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #6d4c41;
+      margin-bottom: 5px;
+    }
+
+    .subsubtitle {
+      font-size: 14px;
+      color: #6d4c41;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .password-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .password-wrapper input {
+      padding-right: 40px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      top: 50%;
+      right: 12px;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    button {
+      background-color: #f48fb1;
+      border: none;
+      padding: 12px 20px;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ec407a;
+    }
+
+    .error {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+      display: none;
+      animation: shake 0.3s;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes shake {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      50% { transform: translateX(5px); }
+      75% { transform: translateX(-5px); }
+      100% { transform: translateX(0); }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #ff80ab;
+      top: -10px;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+      border-radius: 50%;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Confetti Background -->
+  <script>
+    for (let i = 0; i < 60; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      confetti.style.left = Math.random() * 100 + 'vw';
+      confetti.style.animationDuration = 3 + Math.random() * 5 + 's';
+      confetti.style.backgroundColor = ['#f48fb1', '#ce93d8', '#ffccbc', '#f8bbd0', '#f06292', '#ba68c8'][Math.floor(Math.random()*6)];
+      document.body.appendChild(confetti);
+    }
+  </script>
+
+  <div class="login-container">
+    <h1>Enter the love code <span style="font-size: 30px;">💖</span></h1>
+    <p class="subtitle">Enter your secret code to continue...</p>
+    <p class="subsubtitle">Cuz only you know the password 🔐</p>
+
+    <input type="text" id="username" placeholder="Username" />
+
+    <div class="password-wrapper">
+      <input type="password" id="password" placeholder="Password" />
+      <span class="toggle-password" onclick="togglePassword()">👁️</span>
+    </div>
+
+    <button onclick="checkLogin()">Login</button>
+    <div class="error" id="error-msg">Wrong credentials, try again 😢</div>
+  </div>
+
+  <script>
+    function checkLogin() {
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value.trim();
+      const errorMsg = document.getElementById("error-msg");
+
+      if (username === "cipaacantik" && password === "myonlyonecipa") {
+        window.location.href = "birthday.html";
+      } else {
+        errorMsg.style.display = "block";
+        errorMsg.style.animation = "shake 0.3s";
+        setTimeout(() => {
+          errorMsg.style.animation = "";
+        }, 300);
+      }
+    }
+
+    function togglePassword() {
+      const passwordInput = document.getElementById("password");
+      const toggleIcon = document.querySelector(".toggle-password");
+
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        toggleIcon.textContent = "🙈";
+      } else {
+        passwordInput.type = "password";
+        toggleIcon.textContent = "👁️";
+      }
+    }
+  </script>
+
+</body>
+</html>

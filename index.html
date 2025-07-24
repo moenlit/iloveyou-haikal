@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Find the Love Clues 💘</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Nunito:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style/main.css" />
+</head>
+<body>
+  <div class="background-loves">
+</div>
+
+  <div class="container">
+    <h1 class="title">Find the Love Clues 💘</h1>
+    <p class="instruction">Tap the 4 items that represent love to reveal a surprise!</p>
+
+    <div class="grid">
+      <div class="item" data-correct="true">🧸</div>
+      <div class="item" data-correct="true">💗</div>
+      <div class="item" data-correct="false">🍕</div>
+      <div class="item" data-correct="true">🌸</div>
+      <div class="item" data-correct="false">🍟</div>
+      <div class="item" data-correct="false">🍩</div>
+      <div class="item" data-correct="true">💌</div>
+      <div class="item" data-correct="false">🎮</div>
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <audio id="clickSound" src="assets/sound/click.mp3" preload="auto"></audio>
+<audio id="correctSound" src="assets/sound/correct.mp3" preload="auto"></audio>
+<audio id="wrongSound" src="assets/sound/wrong.mp3" preload="auto"></audio>
+
+
+  <script src="script/main.js"></script>
+</body>
+</html>

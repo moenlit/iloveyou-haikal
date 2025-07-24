@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>🎉 Happy Birthday Sayang 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: url('assets/images/bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Nunito', sans-serif;
+      overflow: hidden;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .love {
+      position: fixed;
+      top: -10px;
+      font-size: 28px;
+      color: pink;
+      animation: fall 6s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10px) translateX(0);
+      }
+      100% {
+        transform: translateY(100vh) translateX(40px);
+      }
+    }
+
+    .envelope-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate(-50%, -50%) translateY(0);
+      }
+      50% {
+        transform: translate(-50%, -50%) translateY(-10px);
+      }
+    }
+
+    .secret-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Nunito', sans-serif;
+      font-size: 20px;
+      color: #fff0e6;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      z-index: 2;
+      text-align: center;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+
+    .envelope {
+      width: 90vw;
+      max-width: 500px;
+      height: 240px;
+      background: linear-gradient(#5a2e1c, #8d4a29);
+      position: relative;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border-radius: 12px;
+      transition: 0.3s ease;
+    }
+
+    .envelope:hover {
+      box-shadow: 0 0 25px rgba(255, 200, 150, 0.7);
+    }
+
+    .flap {
+      width: 0;
+      height: 0;
+      border-left: 45vw solid transparent;
+      border-right: 45vw solid transparent;
+      border-bottom: 120px solid #3e1d11;
+      position: absolute;
+      top: -120px;
+      left: 0;
+    }
+
+    @media (min-width: 600px) {
+      .flap {
+        border-left: 250px solid transparent;
+        border-right: 250px solid transparent;
+        border-bottom: 140px solid #3e1d11;
+        top: -140px;
+      }
+
+      .envelope {
+        width: 500px;
+        height: 240px;
+      }
+    }
+
+    .letter {
+      position: absolute;
+      top: 20px;
+      left: 25px;
+      right: 25px;
+      background: #fff6f0;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      display: none;
+      animation: slideup 1s ease forwards;
+    }
+
+    @keyframes slideup {
+      0% {transform: translateY(50px); opacity: 0;}
+      100% {transform: translateY(0); opacity: 1;}
+    }
+
+    .typewriter {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #5a2e1c;
+      white-space: pre-line;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translate(-50%, -40%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+
+.birthday-heading {
+  position: absolute;
+  top: -220px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 29px;
+  font-weight: bold;
+  color: #ffe6f2; /* pink muda, lebih terang dari #fff0e6 */
+  text-shadow:
+    2px 2px 4px rgba(0, 0, 0, 0.6),
+    0 0 10px rgba(255, 200, 230, 0.8); /* bikin efek glow lembut */
+  z-index: 3;
+  pointer-events: none;
+}
+
+  </style>
+</head>
+<body>
+
+<audio id="bg-music" autoplay loop muted>
+  <source src="assets/sound/here-with-me.mp3" type="audio/mpeg">
+</audio>
+
+<div class="envelope-container" onclick="openEnvelope()">
+  <div class="birthday-heading" id="birthdayHeading"></div>
+  <div class="secret-text" id="secretText">A little secret inside... 👀</div>
+  <div class="envelope">
+    <div class="flap"></div>
+  </div>
+  <div class="letter" id="letter">
+    <div class="typewriter" id="typewriter-text"></div>
+  </div>
+</div>
+
+<script>
+  // Love particles
+  function createLove() {
+    const love = document.createElement('div');
+    love.classList.add('love');
+    love.textContent = '🩷';
+    love.style.left = Math.random() * window.innerWidth + 'px';
+    document.body.appendChild(love);
+    setTimeout(() => love.remove(), 6000);
+  }
+  setInterval(createLove, 300);
+
+  // Typewriter effect
+  const text = "From now on and forever,\nyour birthdays won’t feel ordinary anymore—\nbecause now, you have me by your side 💌 i love you endlessly 🫶🏻🩷";
+  let i = 0;
+  const speed = 60;
+
+  function typeWriter() {
+    if (i < text.length) {
+      document.getElementById("typewriter-text").innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, speed);
+    }
+  }
+
+  function openEnvelope() {
+    const letter = document.getElementById("letter");
+    const secretText = document.getElementById("secretText");
+    letter.style.display = "block";
+    secretText.style.opacity = 0; // Hilangkan teks saat amplop dibuka
+    typeWriter();
+  }
+
+  // Typewriter untuk heading
+  const headingText = "🩷🎂 Happy Birthday Sayang 🎁🩷";
+  let j = 0;
+  const headingSpeed = 80;
+
+  function typeHeading() {
+    if (j < headingText.length) {
+      document.getElementById("birthdayHeading").innerHTML += headingText.charAt(j);
+      j++;
+      setTimeout(typeHeading, headingSpeed);
+    }
+  }
+
+  window.addEventListener('load', function () {
+    typeHeading();
+
+    const music = document.getElementById("bg-music");
+    music.muted = false;
+    music.play().catch(() => {
+      document.body.addEventListener('click', () => {
+        music.muted = false;
+        music.play();
+      }, { once: true });
+    });
+  });
+
+  // Autoplay music on page load
+  window.addEventListener('load', function () {
+    const music = document.getElementById("bg-music");
+    music.muted = false;
+    music.play().catch(() => {
+      document.body.addEventListener('click', () => {
+        music.muted = false;
+        music.play();
+      }, { once: true });
+    });
+  });
+</script>
+
+</body>
+</html>

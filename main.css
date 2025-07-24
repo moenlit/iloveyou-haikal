@@ -1,0 +1,142 @@
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: linear-gradient(-45deg, #ffe6f0, #ffb6c1, #ffd6e8, #ffcce0);
+  background-size: 400% 400%;
+  animation: gradientMove 15s ease infinite;
+  position: relative;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.container {
+  text-align: center;
+  padding: 20px;
+  max-width: 600px;
+  margin: 100px auto 20px auto;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.instruction {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  gap: 15px;
+  justify-content: center;
+}
+
+.item {
+  font-size: 2.2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  padding: 15px;
+}
+
+.item:hover {
+  transform: scale(1.2);
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.background-loves {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.love {
+  position: absolute;
+  top: 0;
+  color: #ff87b2;
+  font-size: 1.5rem;
+  animation: fall 4s linear infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.item.wrong {
+  animation: shake 0.4s;
+  background-color: #ffdede;
+}
+
+/* Sparkle Effect */
+.sparkle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  color: #ffffffcc;
+  font-size: 18px;
+  animation: sparkleAnim 3s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes sparkleAnim {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5) rotate(180deg);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
